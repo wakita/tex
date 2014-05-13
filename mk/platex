@@ -1,0 +1,6 @@
+require "$DROPBOX/lib/tex/mk/common"
+
+$latex        = $platex;
+$latex_silent = $platex_silent;
+$bibtex       = $pbibtex;
+$pdf_mode     = $pdf_mode_dvipdfmx;

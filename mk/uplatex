@@ -1,0 +1,9 @@
+require "$DROPBOX/lib/tex/mk/common";
+
+$latex            = $uplatex;
+$latex_silent     = $uplatex_silent;
+$bibtex           = $pbibtex;
+$dvipdf           = 'dvipdfmx %O -o %D %S';
+$pdf_mode         = $pdf_mode_dvipdfmx
+
+# vim: filetype=perl

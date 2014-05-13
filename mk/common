@@ -1,0 +1,41 @@
+$latexargs        = '-shell-escape -synctex=1';
+$latexsilentargs  = $latexargs . ' -interaction=batchmode';
+
+$uplatex          = 'uplatex ' . $latexargs;
+$uplatex_silent   = 'uplatex ' . $latexsilentargs;
+
+$latex            = 'platex ' . $latexargs         . '%O %S';
+$latex_silent     = 'platex ' . $latexsilentargs   . '%O %S';
+
+$pdflatex         = 'pdflatex ' . $latexargs       . '%O %S';
+$pdflatex_silent  = 'pdflatex ' . $latexsilentargs . '%O %S';
+
+$dvipdf           = 'dvipdfmx %O -o %D %S';
+
+$bibtex           = 'bibtex';
+$pbibtex          = 'pbibtex';
+$biber            = 'biber --bblencoding=utf8 -u -U --output_safechars';
+
+$makeindex        = 'mendex %O -o %D %S';
+
+$max_repeat        = 3;
+$pdf_mode_none     = 0;
+$pdf_mode_pdflatex = 1;
+$pdf_mode_ps2pdf   = 2;
+$pdf_mode_dvipdfmx = 3;
+
+$aux_dir           = $ENV{work_dir};
+$out_dir           = $aux_dir;
+use File::Path;
+mkpath($aux_dir);
+
+# プレビューアの設定
+$pdf_previewer    = "open -ga $HOME/Applications/Skim.app";
+$preview_continuous_mode = 1;
+  # 既存の PDF を削除せずに上書きし，プレビュアのファイル自動更新機能を有効にする．
+$pvc_view_file_via_temporary = 0;
+
+@default_files    = ($ENV{main_tex});
+$success_cmd      = "cp %D $ENV{copy_pdf}";
+
+# vim: filetype=perl
