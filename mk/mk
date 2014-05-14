@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export main_tex=tex/main.tex
+
+[ -f $main_tex ] &&
+  latexmk -quiet -gg -r "$DROPBOX/lib/tex/mk/pdflatex"
