@@ -1,3 +1,5 @@
 require "$ENV{DROPBOX}/lib/tex/mk/common";
 
 $pdf_mode = $pdf_mode_pdflatex;
+
+1;
