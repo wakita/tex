@@ -3,7 +3,6 @@
 if [ "$PWD"="$DROPBOX" ]; then
   [ "$PAPER"=="" ] || exit 1
   d=$DROPBOX/research/mypaper/$PAPER
-  echo $d
   if [ ! -d $d ]; then
     mkdir -p $d/img $d/sty $d/tex
     cd $d
@@ -12,7 +11,8 @@ if [ "$PWD"="$DROPBOX" ]; then
     touch $MAIN
     git init --separate-git-dir ../.git/$PAPER
   fi
-  [ "$MAIN"=="" ] || MAIN="tex/main.tex"
+  cd $d
+  [ "$MAIN"=="" ] && export MAIN="tex/main.tex"
 fi
 
 mvim tex
