@@ -1,6 +1,21 @@
 #!/bin/sh
 
-export main_tex=tex/main.tex
+if [ "$PWD"="$DROPBOX" ]; then
+  [ "$PAPER"=="" ] || exit 1
+  d=$DROPBOX/research/mypaper/$PAPER
+  echo $d
+  if [ ! -d $d ]; then
+    mkdir -p $d/img $d/sty $d/tex
+    cd $d
+    unset d
+    MAIN=tex/main.tex
+    touch $MAIN
+    git init --separate-git-dir ../.git/$PAPER
+  fi
+  [ "$MAIN"=="" ] || MAIN="tex/main.tex"
+fi
 
-[ -f $main_tex ] &&
-  latexmk -quiet -gg -r "$DROPBOX/lib/tex/mk/pdflatex"
+mvim tex
+
+[ "$BUILD"!="" ] &&
+  latexmk -quiet -gg -r "$DROPBOX/lib/tex/mk/$BUILD"
