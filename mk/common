@@ -31,7 +31,7 @@ use Cwd;
 @default_files    = ($ENV{MAIN});
 $success_cmd      = "cp %D " . basename(getcwd) . '.pdf';
 
-$aux_dir           = "$ENV{HOME}/projects/paper/" . basename(getcwd);
+$aux_dir           = "$ENV{HOME}/.tmp/tex/" . basename(getcwd);
 $out_dir           = $aux_dir;
 mkpath($aux_dir);
 

@@ -1,4 +1,4 @@
-require "$ENV{DROPBOX}/lib/tex/mk/common";
+require "$ENV{TEXMKCONF}/common";
 
 $pdf_mode = $pdf_mode_pdflatex;
 

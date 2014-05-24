@@ -1,21 +1,28 @@
 #!/bin/sh
 
-if [ "$PWD"="$DROPBOX" ]; then
-  [ "$PAPER"=="" ] || exit 1
-  d=$DROPBOX/research/mypaper/$PAPER
-  if [ ! -d $d ]; then
-    mkdir -p $d/img $d/sty $d/tex
-    cd $d
-    unset d
-    MAIN=tex/main.tex
-    touch $MAIN
-    git init --separate-git-dir ../.git/$PAPER
-  fi
-  cd $d
-  [ "$MAIN"=="" ] && export MAIN="tex/main.tex"
+[ $TEXMKCONF ] || export TEXMKCONF="$DROPBOX/lib/tex/mk"
+
+# Environment variables
+# PAPER: the directory of your writing project
+# MAIN: the relative path to your main tex file (defaults: tex/main.tex)
+# BUILD: the build methods either {pdflatex|platex|uplatex}
+
+[ "$PAPER" ] || exit 1
+
+if [ ! -d $PAPER ]; then
+  mkdir -p $PAPER/img $PAPER/sty $PAPER/tex
+  cd $PAPER
+  [ -d ../.git ] && git init --separate-git-dir ../.git/`basename $PAPER`
 fi
 
-mvim tex
+cd $PAPER
+[ "$MAIN" ]    || export MAIN=tex/main.tex
+[ -f $MAIN ] || cat>$MAIN<<end_of_tex
+\\documentclass {article}
+\\begin {document}
+Let's get started with your new document!
+\\end {document}
+end_of_tex
 
-[ "$BUILD"!="" ] &&
-  latexmk -quiet -gg -r "$DROPBOX/lib/tex/mk/$BUILD"
+mvim tex
+[ $BUILD ]   && latexmk -quiet -gg -r "$TEXMKCONF/$BUILD"

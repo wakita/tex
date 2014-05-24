@@ -1,4 +1,4 @@
-require "$DROPBOX/lib/tex/mk/common"
+require "$TEXMKCONF/common"
 
 $latex        = $platex;
 $latex_silent = $platex_silent;
