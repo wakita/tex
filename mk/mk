@@ -1,21 +1,20 @@
 #!/bin/sh
 
-[ $TEXMKCONF ] || export TEXMKCONF="$DROPBOX/lib/tex/mk"
-
 # Environment variables
+# TEXMKCONF: the script directory the mk script should be found as $TEXMKCONF/mk
 # PAPER: the directory of your writing project
 # MAIN: the relative path to your main tex file (defaults: tex/main.tex)
 # BUILD: the build methods either {pdflatex|platex|uplatex}
 
 [ "$PAPER" ] || exit 1
 
-if [ ! -d $PAPER ]; then
-  mkdir -p $PAPER/img $PAPER/sty $PAPER/tex
+if [ ! -d "$PAPER" ]; then
+  mkdir -p "$PAPER/img" "$PAPER/sty" "$PAPER/tex"
   cd $PAPER
-  [ -d ../.git ] && git init --separate-git-dir ../.git/`basename $PAPER`
+  [ -d ../.git ] && git init --separate-git-dir ../.git/`basename "$PAPER"`
 fi
 
-cd $PAPER
+cd "$PAPER"
 [ "$MAIN" ]    || export MAIN=tex/main.tex
 [ -f $MAIN ] || cat>$MAIN<<end_of_tex
 \\documentclass {article}
