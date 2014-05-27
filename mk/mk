@@ -23,5 +23,5 @@ Let's get started with your new document!
 \\end {document}
 end_of_tex
 
-mvim tex
+# mvim tex
 [ $BUILD ]   && latexmk -quiet -gg -r "$TEXMKCONF/$BUILD"
