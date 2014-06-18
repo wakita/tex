@@ -18,7 +18,7 @@ $biber            = 'biber --bblencoding=utf8 -u -U --output_safechars';
 
 $makeindex        = 'mendex %O -o %D %S';
 
-$max_repeat        = 3;
+$max_repeat        = 5;
 $pdf_mode_none     = 0;
 $pdf_mode_pdflatex = 1;
 $pdf_mode_ps2pdf   = 2;
@@ -28,8 +28,8 @@ use File::Basename 'basename';
 use File::Path 'mkpath';
 use Cwd;
 
-@default_files    = ($ENV{MAIN});
-$success_cmd      = "cp %D " . basename(getcwd) . '.pdf';
+# @default_files    = ($ENV{MAIN});
+# $success_cmd      = "cp %D " . basename(getcwd) . '.pdf';
 
 $aux_dir           = "$ENV{HOME}/.tmp/tex/" . basename(getcwd);
 $out_dir           = $aux_dir;
@@ -40,6 +40,20 @@ $pdf_previewer    = "open -ga Skim.app";
 $preview_continuous_mode = 1;
   # 既存の PDF を削除せずに上書きし，プレビュアのファイル自動更新機能を有効にする．
 $pvc_view_file_via_temporary = 0;
+
+if ($build == "pdflatex") {
+  $pdf_mode = $pdf_mode_pdflatex;
+} elsif ($build == "platex") {
+  $latex        = $platex;
+  $latex_silent = $platex_silent;
+  $bitex        = $pbibtex;
+  $pdf_mode     = $pdf_mode_dvipdfmx;
+} elsif ($build == "uplatex") {
+  $latex        = $uplatex;
+  $latex_silent = $uplatex_silent;
+  $bibtex       = $pbibtex;
+  $pdf_mode     = $pdf_mode_dvipdfmx;
+}
 
 1;
 

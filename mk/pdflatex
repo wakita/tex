@@ -1,5 +1,0 @@
-require "$ENV{TEXMKCONF}/common";
-
-$pdf_mode = $pdf_mode_pdflatex;
-
-1;

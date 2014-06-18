@@ -1,8 +1,0 @@
-require "$TEXMKCONF/common";
-
-$latex            = $uplatex;
-$latex_silent     = $uplatex_silent;
-$bibtex           = $pbibtex;
-$pdf_mode         = $pdf_mode_dvipdfmx
-
-1;

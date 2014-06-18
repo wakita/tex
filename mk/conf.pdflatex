@@ -1,0 +1,4 @@
+$build = "pdflatex";
+@default_files = ("tex/main");
+chdir "tex"; system("mvim", "."); chdir "..";
+require "$ENV{DROPBOX}/lib/tex/mk/build";
