@@ -35,3 +35,6 @@ article2014 という論文執筆のプロジェクトを開始することと�
 
 `build`
 :   Latexmkを利用するための共通設定．
+
+`conf.pdflatex`
+:   ドライバとしてpdflatexを利用した場合の設定例．
