@@ -4,8 +4,8 @@ $latexsilentargs  = $latexargs . ' -interaction=batchmode';
 $uplatex          = 'uplatex ' . $latexargs;
 $uplatex_silent   = 'uplatex ' . $latexsilentargs;
 
-$latex            = 'platex ' . $latexargs         . '%O %S';
-$latex_silent     = 'platex ' . $latexsilentargs   . '%O %S';
+$platex            = 'platex ' . $latexargs         . '%O %S';
+$platex_silent     = 'platex ' . $latexsilentargs   . '%O %S';
 
 $pdflatex         = 'pdflatex ' . $latexargs       . '%O %S';
 $pdflatex_silent  = 'pdflatex ' . $latexsilentargs . '%O %S';
@@ -41,14 +41,14 @@ $preview_continuous_mode = 1;
   # 既存の PDF を削除せずに上書きし，プレビュアのファイル自動更新機能を有効にする．
 $pvc_view_file_via_temporary = 0;
 
-if ($build == "pdflatex") {
+if ($build eq "pdflatex") {
   $pdf_mode = $pdf_mode_pdflatex;
-} elsif ($build == "platex") {
+} elsif ($build eq "platex") {
   $latex        = $platex;
   $latex_silent = $platex_silent;
   $bitex        = $pbibtex;
   $pdf_mode     = $pdf_mode_dvipdfmx;
-} elsif ($build == "uplatex") {
+} elsif ($build eq "uplatex") {
   $latex        = $uplatex;
   $latex_silent = $uplatex_silent;
   $bibtex       = $pbibtex;
